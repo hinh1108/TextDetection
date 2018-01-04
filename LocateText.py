@@ -11,23 +11,16 @@ DATE: Saturday, Sept 14th 2013
   with text areas outlined in red.
   
 """
-#import clean_page as clean
 import connected_components as cc
-import run_length_smoothing as rls
 import clean_page as clean
-import ocr
 import segmentation as seg
-import furigana
 import arg
 import defaults
 from scipy.misc import imsave
-
-import numpy as np
 import cv2
 import sys
 import argparse
 import os
-import scipy.ndimage
 import datetime
 
 
@@ -42,9 +35,12 @@ if __name__ == '__main__':
   parser.add_argument('-v','--verbose', help='Verbose operation. Print status messages during processing', action="store_true")
   parser.add_argument('--display', help='Display output using OPENCV api and block program exit.', action="store_true")
   parser.add_argument('--furigana', help='Attempt to suppress furigana characters which interfere with OCR.', action="store_true")
-  #parser.add_argument('-d','--debug', help='Overlay input image into output.', action="store_true")
   parser.add_argument('--sigma', help='Std Dev of gaussian preprocesing filter.',type=float,default=None)
-  parser.add_argument('--binary_threshold', help='Binarization threshold value from 0 to 255.',type=int,default=defaults.BINARY_THRESHOLD)
+  #defaults.BINARY_THRESHOLD
+  #6.jpg = 180
+  #131.jpg  = 140
+  print defaults.BINARY_THRESHOLD
+  parser.add_argument('--binary_threshold', help='Binarization threshold value from 0 to 255.',type=int,default=defaults.BINARY_THRESHOLD )
   #parser.add_argument('--segment_threshold', help='Threshold for nonzero pixels to separete vert/horiz text lines.',type=int,default=1)
   parser.add_argument('--additional_filtering', help='Attempt to filter false text positives by histogram processing.', action="store_true")
   arg.value = parser.parse_args()
@@ -63,12 +59,13 @@ if __name__ == '__main__':
     print 'Binarizing with threshold value of ' + str(binary_threshold)
   inv_binary = cv2.bitwise_not(clean.binarize(gray, threshold=binary_threshold))
   binary = clean.binarize(gray, threshold=binary_threshold)
-
+  cv2.imwrite('bw_image.png', binary)
   segmented_image = seg.segment_image(gray)
   segmented_image = segmented_image[:,:,2]
   components = cc.get_connected_components(segmented_image)
+  print components
+  cc.crop_img_components(img, components)
   cc.draw_bounding_boxes(img,components,color=(255,0,0),line_size=2)
-
   imsave(outfile, img)
   
   if arg.boolean_value('display'):

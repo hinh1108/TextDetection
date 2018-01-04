@@ -238,7 +238,7 @@ def text_like_histogram(img, area, average_size):
   for i,row in enumerate(range(y,y+h)):
     black_pixel_count = np.count_nonzero(x_subimage[row,x:x+w])
     y_histogram[i] = black_pixel_count
-  
+
   h_white_runs = get_white_runs(x_histogram)
   num_h_white_runs = len(h_white_runs)
   h_black_runs = get_black_runs(x_histogram)
@@ -272,12 +272,12 @@ def text_like_histogram(img, area, average_size):
     return False
 
   if v_character_mean < avg*0.5 or v_character_mean > avg*2.0:
-    pass    
+    pass
     #return False
   if h_character_mean < avg*0.5 or h_character_mean > avg*2.0:
-    pass    
+    pass
     #return False
-  
+
   return True
 
 def get_black_runs(histogram):
@@ -300,111 +300,6 @@ def slicing_list_stats(slicings):
     variance = np.std(widths)
   return (mean, variance)
     
-
-def area_is_text_like(img, area, average_size):
-  #use basic 'ladder' building technique to see if area features somewhat
-  #regularly spaced vertical japanese characters
-  #this is done by attempting to draw a regular grid in the area, and converging on
-  #the grid dimension (cells are square) that minimizes the number of back pixels at the boundaries
-  #We should also count X black pixels at multiple boundaries as worse than X black pixels at one
-  (image_h, image_w)=img.shape[:2]
-  (x, y, w, h) = dimensions_2d_slice(area)
-
-  #get the average size (width, height?) of connected components in the area of interest
-  aoi = img[area]
-  #ccs = cc.get_connected_components(aoi)
-  aoi_average_size = cc.average_size(aoi)
-  if math.isnan(aoi_average_size):
-    return False
-
-  #if possible,expand the area by one pixel in all directions, which should be white pixels
-  if(x>0 and x+w<image_w-1):
-    x=x-1
-    w=w+2
-  if(y>0 and y+h<image_h-1):
-    y=y-1
-    h=h+2
-
-  #TODO: get the average connected component WIDTH and HEIGHT (not just size) of just
-  #elements within this area. Use THAT to form ranges over which we'll try to create ladders
-
-  #if w<average_size and h<average_size:
-  #  return False
-
-  initial_height = int(aoi_average_size/2)
-  final_height = int(aoi_average_size * 1.5)
-  initial_width = int(aoi_average_size/2)
-  final_width = int(aoi_average_size * 2.0)
-  #if w<h:final_height=w
-  minimum_black_pixel_count_height = w*h
-  minimum_height = initial_height
-  minimum_black_pixel_count_width = w*h
-  minimum_width = initial_width
-
-  #TODO: vary width and height independently. Only way we'll find decent correct segmentation
-  #TODO: start the ladder (grid) outside the area so it wont' always 'hit' black pixels for the
-  #zeroeth row and column
-
-  for s in range(initial_height,final_height):
-    black_pixel_count = 0
-    #horizontal_steps = int(w/s)+1
-    #vertical_steps = int(h/s)+1
-    num_steps = int(h/s)+1
-    for vertical_step in range(0, num_steps):
-      #cound black pixels along horizontal, vertically stepped lines
-      #we can count black pixels with "nonzero" because we're using an inverse image
-      black_pixel_count = black_pixel_count + np.count_nonzero(img[y+vertical_step*s,x:x+w])
-    if black_pixel_count < minimum_black_pixel_count_height:
-      minimum_black_pixel_count_height = black_pixel_count
-      minimum_height = s
-
-  for s in range(initial_width,final_width):
-    black_pixel_count = 0
-    #horizontal_steps = w/s+1
-    #vertical_steps = h/s+1
-    num_steps = int(w/s)+1
-    for horizontal_step in range(0, num_steps):
-      #count black pixels along vertical, horizontally stepped lines
-      #height = vertical_steps*s
-      black_pixel_count = black_pixel_count + np.count_nonzero(img[y:y+h,x+horizontal_step*s])
-    if black_pixel_count < minimum_black_pixel_count_width:
-      minimum_black_pixel_count_width = black_pixel_count
-      minimum_width = s
-  #print 'at location ' + str(x) + ' ' + str(y) + ' ' + str(w) + ' ' + str(h)
-  #print 'found minimum cell height ' + str(minimum_height) + ' with black pixel count ' + str(minimum_black_pixel_count)
-  
-  #draw the finalized grid on our img
-  num_horizontal_steps = int(w/minimum_width)+1
-  if (num_horizontal_steps-1) * minimum_width < (w-minimum_width/4):
-    #print 'increading width steps count by one'
-    num_horizontal_steps = num_horizontal_steps + 1
-  total_width = (num_horizontal_steps-1) * minimum_width
-  num_vertical_steps = int(h/minimum_height)+1
-  if (num_vertical_steps-1) * minimum_height < (h-minimum_height/4):
-    #print 'increasing height steps count by one'
-    num_vertical_steps = num_vertical_steps + 1
-  total_height = (num_vertical_steps-1) * minimum_height
-  #print 'height is ' + str(h) + ' and total line height is ' + str(total_height)
-  #print 'number of steps is ' + str(num_vertical_steps) + ' and num_cells*min height ' + str(num_vertical_steps*minimum_height) 
-  for vertical_step in range(0, num_vertical_steps):
-      #pass
-      img[y+vertical_step*minimum_height,x:x+total_width]=255
-  for horizontal_step in range(0, num_horizontal_steps):
-      #pass
-      img[y:y+total_height,x+horizontal_step*minimum_width]=255
-  '''
-  img[y,x:x+w]=255
-  img[y+h,x:x+w]=255
-  img[y:y+h,x]=255
-  img[y:y+h,x+w]=255
-
-  img[y,x:x+total_width]=255
-  img[y+total_height,x:x+total_width]=255
-  img[y:y+total_height,x]=255
-  img[y:y+total_height,x+total_width]=255
-  '''
-
-  return True
 
 def segment_image_file(filename):
   img = cv2.imread(filename)

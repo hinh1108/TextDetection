@@ -16,6 +16,8 @@ import numpy as np
 import scipy.ndimage
 from pylab import zeros,amax,median
 import cv2
+import pytesseract
+from PIL import Image
 
 def area_bb(a):
   return np.prod([max(x.stop-x.start,0) for x in a[:2]])
@@ -69,24 +71,35 @@ def draw_bounding_boxes(img,connected_components,max_size=0,min_size=0,color=(0,
     (ys,xs)=component[:2]
     cv2.rectangle(img,(xs.start,ys.start),(xs.stop,ys.stop),color,line_size)
 
+def crop_img_components(img,connected_components,max_size=0,min_size=0):
+  number = 0
+  result = ""
+  for component in connected_components:
+    if min_size > 0 and area_bb(component)**0.5<min_size: continue
+    if max_size > 0 and area_bb(component)**0.5>max_size: continue
+    #a = area_nz(component,img)
+    #if a<min_size: continue
+    #if a>max_size: continue
+    (ys,xs)=component[:2]
+    cropped=img[ys.start - 10:ys.stop + 10 , xs.start:xs.stop]
+    cv2.imwrite("thres" + str(number) + ".jpg", cropped)
+    result = result + pytesseract.image_to_string(Image.open("thres" + str(number) + ".jpg")) + "\r\n"
+
+  file = open("output.txt", "w")
+  file.write(result + " ")
+
+  file.close()
+
+  print " Ket qua" + result
+
+
+
 def filter_by_size(image,connected_components,max_size,min_size):
   filtered = []
   for cc in connected_components:
     if area_bb(cc)**0.5<min_size: continue
     if area_bb(cc)**0.5>max_size: continue
     filtered.append(cc)
-  return filtered
-
-def filter_by_black_white_ratio(img,connected_components,maximum=1.0,minimum=0.0):
-  filtered = []
-  for component in connected_components:
-    black = area_nz(component,img)
-    a = area_bb(component) 
-    percent_black = float(black)/float(a)
-    if percent_black < minimum or percent_black > maximum:
-      #print 'component removed for percent ' + str(percent_black)
-      continue
-    filtered.append(component)
   return filtered
 
 def average_size(img, minimum_area=3, maximum_area=100):

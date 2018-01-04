@@ -92,7 +92,7 @@ def form_canny_mask(img, mask=None):
     mask = mask*edges
   else:
     mask = edges
-  contours,hierarchy = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+  _,contours,hierarchy = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
   temp_mask = np.zeros(img.shape,np.uint8)
   for c in contours:
