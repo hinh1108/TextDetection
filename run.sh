@@ -6,6 +6,6 @@ result=`cat "output.txt"`
 
 say "Hello Thanh Ha Do"
 
-say "Result is "
+say "Result is 	"
 
 say $result
