@@ -2,7 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95ff3556-8433-4328-a843-7b1e168b4737" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/old/StrokeWidthTransform.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/old/StrokeWidthTransform.hpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/old/connected_component_test.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/old/detect_text.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/old/kmeans_test1.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/old/manga_text_detection_test2.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/old/ocr_on_bounding_boxes.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/old/text_link_test.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/194.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/194.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/194_segmentation.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/194_segmentation_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/194_text_locations.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/194_text_locations_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/194_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/201.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/205.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/299.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/301.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/343.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/350.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/360.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/447.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/449.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/annotorious.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/annotorious.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/example.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/test.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号004.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号194.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号201.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号205.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号299.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号301.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号343.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号350.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号350.jpg.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号353.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号360.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号447.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/週刊ヤングマガジン31号449.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/include/python2.7" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/local/include" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/CacheControl-0.11.5-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/chardet-2.3.0-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/colorama-0.3.7-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/distlib-0.2.2-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/html5lib-0.999-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/ipaddress-0.0.0-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/lockfile-0.12.2-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/packaging-16.6-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/pip-8.1.1-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/pkg_resources-0.0.0-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/progress-1.2-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/pyparsing-2.0.3-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/requests-2.9.1-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/retrying-1.3.3-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/setuptools-20.7.0-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/six-1.10.0-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/urllib3-1.13.1-py2.py3-none-any.whl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/venv/share/python-wheels/wheel-0.29.0-py2.py3-none-any.whl" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MangaTextDetection.iws" />
     <ignored path=".idea/workspace.xml" />
